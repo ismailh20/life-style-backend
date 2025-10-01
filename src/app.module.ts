@@ -7,24 +7,32 @@ import { EventsModule } from './events/events/events.module';
 import { GuestsModule } from './guests/guests.modul';
 import { FacilitiesModule } from './facilities/facilities.modul';
 import { TicketsModule } from './tickets/ticket.modul';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
-    SequelizeModule.forRoot({
-      dialect: 'postgres',
-      host: '159.65.0.183',
-      port: 5432,
-      username: 'lifestyle',
-      password: 'ismailganteng',
-      database: 'lifestyle_db',
-      autoLoadModels: true,
-      synchronize: true,
+    ConfigModule.forRoot({
+      isGlobal: true, // biar ga perlu import ConfigModule di module lain
+    }),
+    SequelizeModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        dialect: 'postgres',
+        host: configService.get<string>('DATABASE_HOST'),
+        port: configService.get<number>('DATABASE_PORT'),
+        username: configService.get<string>('DATABASE_USER'),
+        password: configService.get<string>('DATABASE_PASSWORD'),
+        database: configService.get<string>('DATABASE_NAME'),
+        autoLoadModels: true,
+        synchronize: true, // hati2 di prod
+      }),
     }),
     EventsModule,
     GuestsModule,
     FacilitiesModule,
-    TicketsModule
-  ]
+    TicketsModule,
+  ],
 })
 export class AppModule {
   constructor(@InjectConnection() private readonly sequelize: Sequelize) {}
