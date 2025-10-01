@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { InjectConnection, SequelizeModule } from '@nestjs/sequelize';
 import { Sequelize } from 'sequelize';
 import { EventsModule } from './events/events/events.module';
@@ -8,6 +6,9 @@ import { GuestsModule } from './guests/guests.modul';
 import { FacilitiesModule } from './facilities/facilities.modul';
 import { TicketsModule } from './tickets/ticket.modul';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { UsersModule } from './users/user.modul';
+import { OrderTransactionsModule } from './order-transaction/order-transactions.module';
+import { TicketDetailModule } from './tickets/ticket-detail/ticket-detail.module';
 
 @Module({
   imports: [
@@ -32,6 +33,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     GuestsModule,
     FacilitiesModule,
     TicketsModule,
+    UsersModule,
+    OrderTransactionsModule,
+    TicketDetailModule
   ],
 })
 export class AppModule {

@@ -1,5 +1,13 @@
 // src/events/event.model.ts
-import { Table, Column, Model, DataType, ForeignKey, BelongsTo } from 'sequelize-typescript';
+import {
+  Table,
+  Column,
+  Model,
+  DataType,
+  ForeignKey,
+  BelongsTo,
+  HasMany,
+} from 'sequelize-typescript';
 import { Merchant } from 'src/merchants/merchant.model';
 
 @Table({
@@ -59,6 +67,6 @@ export class Event extends Model<Event> {
   @Column({ type: DataType.TEXT, field: 'hero_image' })
   hero_image?: string;
 
-//   @BelongsTo(() => Merchant)
-//   merchant: Merchant;
+  //   @BelongsTo(() => Merchant)
+  //   merchant: Merchant;
 }
