@@ -6,7 +6,7 @@ async function bootstrap() {
 
   // ✅ aktifin CORS
   app.enableCors({
-    origin: 'http://localhost:3001', // ganti sesuai frontend lu
+    origin: true, // ganti sesuai frontend lu
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
