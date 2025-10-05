@@ -12,6 +12,7 @@ import { TicketDetailModule } from './tickets/ticket-detail/ticket-detail.module
 import { MerchantsModule } from './merchants/merchants.module';
 import { TemplatesModule } from './templates/templates.module';
 import { FeaturesModule } from './features/features.module';
+import { CheckinModule } from './checkin/checkin.module';
 
 @Module({
   imports: [
@@ -41,7 +42,8 @@ import { FeaturesModule } from './features/features.module';
     TicketDetailModule,
     MerchantsModule,
     TemplatesModule,
-    FeaturesModule
+    FeaturesModule,
+    CheckinModule
   ],
 })
 export class AppModule {
