@@ -9,6 +9,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UsersModule } from './users/user.modul';
 import { OrderTransactionsModule } from './order-transaction/order-transactions.module';
 import { TicketDetailModule } from './tickets/ticket-detail/ticket-detail.module';
+import { MerchantsModule } from './merchants/merchants.module';
+import { TemplatesModule } from './templates/templates.module';
+import { FeaturesModule } from './features/features.module';
+import { CheckinModule } from './checkin/checkin.module';
 
 @Module({
   imports: [
@@ -35,7 +39,11 @@ import { TicketDetailModule } from './tickets/ticket-detail/ticket-detail.module
     TicketsModule,
     UsersModule,
     OrderTransactionsModule,
-    TicketDetailModule
+    TicketDetailModule,
+    MerchantsModule,
+    TemplatesModule,
+    FeaturesModule,
+    CheckinModule
   ],
 })
 export class AppModule {

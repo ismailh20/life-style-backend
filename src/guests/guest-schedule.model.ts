@@ -10,11 +10,20 @@ import {
 import { Guest } from '../guests/guest.model';
 import { Event } from '../events/events/event.model';
 
+export interface GuestCreationAttributes {
+  event_id: number;
+  guest_id: number;
+  schedule_date: Date;
+  start_time: string;
+  end_time: string;
+  stage: string;
+}
+
 @Table({
   tableName: 'guest_schedules',
   timestamps: false, // karena pakai created_at custom
 })
-export class GuestSchedule extends Model<GuestSchedule> {
+export class GuestSchedule extends Model<GuestSchedule, GuestCreationAttributes> {
   @Column({
     type: DataType.BIGINT,
     autoIncrement: true,

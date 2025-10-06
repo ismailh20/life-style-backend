@@ -8,13 +8,25 @@ import {
   BelongsTo,
   HasMany,
 } from 'sequelize-typescript';
-import { Merchant } from 'src/merchants/merchant.model';
+import { Merchant } from '../../merchants/merchant.model';
+
+export interface EventCreationAttributes {
+  merchant_id: number;
+  name: string;
+  description?: string;
+  location?: string;
+  start_date?: Date;
+  end_date?: Date;
+  capacity?: number;
+  status: boolean;
+  image_venue?: string;
+}
 
 @Table({
   tableName: 'events',
   timestamps: false,
 })
-export class Event extends Model<Event> {
+export class Event extends Model<Event, EventCreationAttributes> {
   @Column({
     type: DataType.INTEGER,
     autoIncrement: true,

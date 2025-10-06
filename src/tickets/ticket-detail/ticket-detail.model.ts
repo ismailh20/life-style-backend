@@ -87,4 +87,7 @@ export class TicketDetail extends Model<TicketDetailAttributes, TicketDetailCrea
 
   @BelongsTo(() => OrderTransaction)
   order: OrderTransaction;
+
+  // @HasMany(() => Checkin)
+  // checkins: Checkin[];
 }
