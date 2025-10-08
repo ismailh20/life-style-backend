@@ -7,15 +7,24 @@ import {
   BelongsTo,
 } from 'sequelize-typescript';
 import { TicketDetail } from '../tickets/ticket-detail/ticket-detail.model';
+import type {
+  CreationOptional,
+  InferAttributes,
+  InferCreationAttributes,
+  NonAttribute,
+} from 'sequelize';
 
 @Table({ tableName: 'checkins', timestamps: false })
-export class Checkin extends Model<Checkin> {
+export class Checkin extends Model<
+  InferAttributes<Checkin>,
+  InferCreationAttributes<Checkin>
+> {
   @Column({
     type: DataType.INTEGER,
     autoIncrement: true,
     primaryKey: true,
   })
-  declare id: number;
+  declare id: CreationOptional<number>;
 
   @ForeignKey(() => TicketDetail)
   @Column({
@@ -23,10 +32,10 @@ export class Checkin extends Model<Checkin> {
     allowNull: false,
     field: 'ticket_detail_id',
   })
-  ticket_detail_id: number;
+  declare ticket_detail_id: number;
 
   @BelongsTo(() => TicketDetail)
-  ticket_detail: TicketDetail;
+  declare ticket_detail?: NonAttribute<TicketDetail>;
 
   @Column({
     type: DataType.DATE,
@@ -34,5 +43,5 @@ export class Checkin extends Model<Checkin> {
     field: 'checked_in_at',
     defaultValue: DataType.NOW,
   })
-  checked_in_at: Date;
+  declare checked_in_at: CreationOptional<Date>;
 }
