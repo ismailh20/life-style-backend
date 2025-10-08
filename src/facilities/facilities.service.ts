@@ -31,6 +31,7 @@ export class FacilitiesService {
 
     return {
       event,
+      facilities: facilities,
       parking:
         facilities.find((f) => f.name?.toLowerCase() === 'parking')
           ?.description || null,
